@@ -1,0 +1,49 @@
+{
+  "name": "@muggula-prastaram/render",
+  "version": "0.1.0",
+  "description": "SVG rendering and stroke-trace animation for muggu / kolam patterns from @muggula-prastaram/core.",
+  "license": "MIT",
+  "author": "Saahil Yechuri (https://yechuri.sh)",
+  "homepage": "https://github.com/saahily/muggula-prastaram",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saahily/muggula-prastaram.git",
+    "directory": "packages/render"
+  },
+  "bugs": "https://github.com/saahily/muggula-prastaram/issues",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@muggula-prastaram/core": "workspace:^"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "vitest": "^3.0.0"
+  },
+  "keywords": [
+    "kolam",
+    "muggu",
+    "svg",
+    "generative-art",
+    "animation"
+  ]
+}
