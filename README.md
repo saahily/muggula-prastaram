@@ -21,10 +21,22 @@ meter's index, *naṣṭa* rebuilds the meter from its index, and *saṅkhyā* c
 
 ## Packages
 
-| Package | |
+Two focused packages are published from this workspace:
+
+[![core version](https://img.shields.io/npm/v/@muggula-prastaram/core?label=core&color=cb3837)](https://www.npmjs.com/package/@muggula-prastaram/core)
+[![core downloads](https://img.shields.io/npm/dm/@muggula-prastaram/core?label=core%20downloads&color=8f4a33)](https://www.npmjs.com/package/@muggula-prastaram/core)
+[![render version](https://img.shields.io/npm/v/@muggula-prastaram/render?label=render&color=cb3837)](https://www.npmjs.com/package/@muggula-prastaram/render)
+[![render downloads](https://img.shields.io/npm/dm/@muggula-prastaram/render?label=render%20downloads&color=8f4a33)](https://www.npmjs.com/package/@muggula-prastaram/render)
+
+| Package | Purpose |
 |---|---|
-| [`@muggula-prastaram/core`](packages/core) | grid model, tracing, uddiṣṭa/naṣṭa indexing, symmetry, search, enumeration |
-| [`@muggula-prastaram/render`](packages/render) | SVG rendering, curvature styling, stroke-trace animation, themes |
+| [`@muggula-prastaram/core`](https://www.npmjs.com/package/@muggula-prastaram/core) · [source](packages/core) | grid model, tracing, uddiṣṭa/naṣṭa indexing, symmetry, search, enumeration |
+| [`@muggula-prastaram/render`](https://www.npmjs.com/package/@muggula-prastaram/render) · [source](packages/render) | SVG rendering, curvature styling, stroke-trace animation, themes |
+
+```sh
+npm install @muggula-prastaram/core
+npm install @muggula-prastaram/render
+```
 
 ## Quick start
 
