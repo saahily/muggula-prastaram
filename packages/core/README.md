@@ -20,9 +20,11 @@ Pattern.search(grid, { strokes: 1, symmetry: 'C4', seed: 'pongal' });
 for (const p of enumerate(grid, { strokes: 1 })) { /* every sikku */ }
 ```
 
-The index convention, since it is permanent: gate sites sort by (y, x) in the
-grid's doubled coordinates, and site *k* is bit *k* of the index, least
-significant bit first, the same little-endian reading as the classical naṣṭa
-halving procedure. Index 0 is always the pure weave, every strand crossing.
-The test fixtures pin this order for every grid family, and it will not change:
-pattern indices are meant to be shared and to stay valid.
+The index convention, since it is permanent: indices run from 1 to the
+saṅkhyā, as in Piṅgala's prastāra — an index is one plus the sum of the place
+values. Gate sites sort by (y, x) in the grid's doubled coordinates, and site
+*k* is bit *k* of index − 1, least significant bit first, the same
+little-endian reading as the classical naṣṭa halving procedure. Index 1 is
+always the pure weave, every strand crossing. The test fixtures pin this order
+for every grid family, and it will not change: pattern indices are meant to be
+shared and to stay valid.

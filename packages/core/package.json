@@ -1,6 +1,6 @@
 {
   "name": "@muggula-prastaram/core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Exact enumeration, tracing, and search of muggu / kolam patterns: the mirror-curve gate model with prastāra indexing.",
   "license": "MIT",
   "author": "Saahil Yechuri (https://yechuri.sh)",

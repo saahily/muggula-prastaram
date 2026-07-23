@@ -65,7 +65,7 @@ export class Grid {
   readonly dots: readonly Point[];
   /** The region is [0, W] × [0, H] in doubled coordinates. */
   readonly extent: Point;
-  /** Gate-site positions in canonical site order (the index-bit order). */
+  /** Gate-site positions in canonical site order (the place-value order). */
   readonly sitePositions: readonly Point[];
 
   /** @internal */ readonly nodeCount: number;
@@ -205,8 +205,8 @@ export class Grid {
     const nodeCount = nx.length;
 
     // Canonical site order: gate nodes sorted by (y, x) ascending. This order
-    // defines the index bits (LSB = site 0) and never changes: every shared
-    // pattern index depends on it.
+    // defines the place values (site k is bit k of index − 1) and never
+    // changes: every shared pattern index depends on it.
     const siteOrder: number[] = [];
     for (let id = 0; id < nodeCount; id++) if (ngate[id]) siteOrder.push(id);
     siteOrder.sort((u, v) => ny[u]! - ny[v]! || nx[u]! - nx[v]!);

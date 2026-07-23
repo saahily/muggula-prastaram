@@ -3,7 +3,7 @@ import { Grid, Pattern } from '@muggula-prastaram/core';
 import { renderSVG, strokePathData, themes } from '../src/index.js';
 
 const g33 = Grid.of({ kind: 'square', m: 3, n: 3 });
-const sikku33 = Pattern.decode(g33, 3n); // first sikku on 3×3
+const sikku33 = Pattern.decode(g33, 4n); // first sikku on 3×3
 
 describe('strokePathData', () => {
   it('emits a pure polyline at curvature 0', () => {
@@ -38,7 +38,7 @@ describe('strokePathData', () => {
 
 describe('renderSVG', () => {
   it('emits one path per stroke, in theme colors', () => {
-    const p = Pattern.decode(g33, 0n); // 3 strokes
+    const p = Pattern.decode(g33, 1n); // 3 strokes
     const svg = renderSVG(p, { theme: 'dark' });
     expect((svg.match(/<path /g) ?? []).length).toBe(3);
     expect(svg).toContain(themes.dark.strokes[0]!);
@@ -53,7 +53,7 @@ describe('renderSVG', () => {
   });
 
   it('animates with per-stroke sequential keyframes', () => {
-    const p = Pattern.decode(g33, 0n);
+    const p = Pattern.decode(g33, 1n);
     const svg = renderSVG(p, { animate: true, id: 'anim-test' });
     expect(svg).toContain('<style>');
     expect((svg.match(/@keyframes anim-test-s/g) ?? []).length).toBe(3);
@@ -62,7 +62,7 @@ describe('renderSVG', () => {
   });
 
   it('draws once and rests complete by default; looping holds the finished state', () => {
-    const p = Pattern.decode(g33, 0n);
+    const p = Pattern.decode(g33, 1n);
     const once = renderSVG(p, { animate: true });
     expect(once).toContain('1 forwards');
     expect(once).not.toContain('infinite');
@@ -95,12 +95,12 @@ describe('renderSVG', () => {
 
   it('renders the single-dot grid as one ring', () => {
     const g = Grid.of({ kind: 'square', m: 1, n: 1 });
-    const svg = renderSVG(Pattern.decode(g, 0n));
+    const svg = renderSVG(Pattern.decode(g, 1n));
     expect((svg.match(/<path /g) ?? []).length).toBe(1);
   });
 
   it('labels custom grids by dot count', () => {
     const g = Grid.of({ kind: 'custom', dots: [[0, 0], [0, 1], [1, 0]] });
-    expect(renderSVG(Pattern.decode(g, 0n))).toContain('a custom grid of 3 dots');
+    expect(renderSVG(Pattern.decode(g, 1n))).toContain('a custom grid of 3 dots');
   });
 });

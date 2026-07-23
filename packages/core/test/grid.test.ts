@@ -45,7 +45,7 @@ describe('grid construction', () => {
     const g = Grid.of({ kind: 'square', m: 1, n: 1 });
     expect(g.sites).toBe(0);
     expect(g.count()).toBe(1n);
-    expect(Pattern.decode(g, 0n).strokeCount()).toBe(1);
+    expect(Pattern.decode(g, 1n).strokeCount()).toBe(1);
   });
 
   it('rejects invalid families', () => {

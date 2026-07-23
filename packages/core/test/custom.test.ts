@@ -1,6 +1,6 @@
 /**
  * Custom dot regions: stepped, concave, and holed grids. Fixtures pinned from
- * complete enumerations. The 1-3-3-1 grid is the śrīvatsa grid: its index 0
+ * complete enumerations. The 1-3-3-1 grid is the śrīvatsa grid: its index 1
  * (the pure weave) is the classic endless-knot form: a single stroke with
  * full D2 symmetry.
  */
@@ -78,19 +78,19 @@ describe('śrīvatsa grid (1-3-3-1)', () => {
     expect(symmetryClassesFor(g)).toEqual(['none', 'mirror', 'C2']);
   });
 
-  it('index 0, the pure weave, is a single stroke with full D2 symmetry', () => {
-    const p = Pattern.decode(srivatsa(), 0n);
+  it('index 1, the pure weave, is a single stroke with full D2 symmetry', () => {
+    const p = Pattern.decode(srivatsa(), 1n);
     expect(p.strokeCount()).toBe(1);
     expect(p.symmetry().name).toBe('D2');
   });
 
-  it('512 patterns, 16 sikkus, exactly two D2-symmetric sikkus (0 and 40)', () => {
+  it('512 patterns, 16 sikkus, exactly two D2-symmetric sikkus (1 and 41)', () => {
     const g = srivatsa();
-    expect(stats(g)).toEqual({ total: 512, sikku: 16, first: 0n });
+    expect(stats(g)).toEqual({ total: 512, sikku: 16, first: 1n });
     const d2 = [];
     for (const p of enumerate(g, { symmetry: 'C2' }))
       if (p.strokeCount() === 1 && p.symmetry().name === 'D2') d2.push(p.encode());
-    expect(d2).toEqual([0n, 40n]);
+    expect(d2).toEqual([1n, 41n]);
   });
 });
 
@@ -100,18 +100,18 @@ describe('concave regions', () => {
     expect(g.sites).toBe(8);
     expect(elementsFor(g).length).toBe(7);
     expect(symmetryClassesFor(g)).toEqual(['none', 'mirror', 'C2', 'C4', 'D4']);
-    expect(stats(g)).toEqual({ total: 256, sikku: 8, first: 1n });
-    const zero = Pattern.decode(g, 0n);
-    expect(zero.strokeCount()).toBe(2); // outer weave + courtyard loop
-    expect(zero.symmetry().name).toBe('D4');
+    expect(stats(g)).toEqual({ total: 256, sikku: 8, first: 2n });
+    const weave = Pattern.decode(g, 1n);
+    expect(weave.strokeCount()).toBe(2); // outer weave + courtyard loop
+    expect(weave.symmetry().name).toBe('D4');
   });
 
   it('probes asymmetric shapes honestly: the L pentomino keeps only its diagonal mirror', () => {
     const g = lShape();
     expect(elementsFor(g)).toEqual(['refD']);
     expect(symmetryClassesFor(g)).toEqual(['none', 'mirror']);
-    expect(stats(g)).toEqual({ total: 16, sikku: 1, first: 0n });
-    expect(Pattern.decode(g, 0n).symmetry().name).toBe('mirror (diagonal)');
+    expect(stats(g)).toEqual({ total: 16, sikku: 1, first: 1n });
+    expect(Pattern.decode(g, 1n).symmetry().name).toBe('mirror (diagonal)');
   });
 
   it("the 'mirror' class means the region's first available mirror", () => {
@@ -123,14 +123,14 @@ describe('concave regions', () => {
     for (const p of enumerate(g, { symmetry: 'mirror' }))
       members.push([p.encode(), p.strokeCount(), p.symmetry().name]);
     expect(members).toEqual([
-      [0n, 1, 'mirror (diagonal)'],
-      [5n, 3, 'mirror (diagonal)'],
-      [10n, 3, 'mirror (diagonal)'],
-      [15n, 5, 'mirror (diagonal)'],
+      [1n, 1, 'mirror (diagonal)'],
+      [6n, 3, 'mirror (diagonal)'],
+      [11n, 3, 'mirror (diagonal)'],
+      [16n, 5, 'mirror (diagonal)'],
     ]);
     const { pattern, achieved } = Pattern.search(g, { strokes: 1, symmetry: 'mirror', seed: 'x' });
     expect(achieved).toBe(1);
-    expect(pattern.encode()).toBe(0n);
+    expect(pattern.encode()).toBe(1n);
   });
 
   it('search reaches a sikku on every custom shape', () => {

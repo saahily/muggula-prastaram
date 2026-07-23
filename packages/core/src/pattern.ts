@@ -41,12 +41,12 @@ export class Pattern {
     return new Pattern(grid, bits, knownCount);
   }
 
-  /** naṣṭa: index → pattern. */
+  /** naṣṭa: index → pattern. Indices run from 1 to count(), Piṅgala's convention. */
   static decode(grid: Grid, index: bigint): Pattern {
-    if (index < 0n || index >= grid.count())
-      throw new RangeError(`index must be in [0, ${grid.count()})`);
+    if (index < 1n || index > grid.count())
+      throw new RangeError(`index must be in [1, ${grid.count()}]`);
     const bits = new Uint8Array(grid.sites);
-    let x = index;
+    let x = index - 1n;
     for (let k = 0; k < grid.sites; k++) {
       bits[k] = Number(x & 1n);
       x >>= 1n;
@@ -67,13 +67,13 @@ export class Pattern {
     return { pattern: new Pattern(grid, gates, achieved), achieved };
   }
 
-  /** uddiṣṭa: pattern → index. */
+  /** uddiṣṭa: pattern → index, one plus the sum of the gate place values. */
   encode(): bigint {
     if (this.cachedIndex === null) {
       let x = 0n;
       for (let k = this.grid.sites - 1; k >= 0; k--)
         x = (x << 1n) | BigInt(this.bits[k]!);
-      this.cachedIndex = x;
+      this.cachedIndex = x + 1n;
     }
     return this.cachedIndex;
   }
