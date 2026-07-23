@@ -1,6 +1,6 @@
 {
   "name": "@muggula-prastaram/core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Exact enumeration, tracing, and search of muggu / kolam patterns: the mirror-curve gate model with prastāra indexing.",
   "license": "MIT",
   "author": "Saahil Yechuri (https://yechuri.sh)",
@@ -29,6 +29,7 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run build",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run"
   },
