@@ -1,6 +1,6 @@
 {
   "name": "@muggula-prastaram/render",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "SVG rendering and stroke-trace animation for muggu / kolam patterns from @muggula-prastaram/core.",
   "license": "MIT",
   "author": "Saahil Yechuri (https://yechuri.sh)",

@@ -26,11 +26,11 @@ function enumStats(g: Grid) {
 }
 
 describe('stroke-count fixtures', () => {
-  it('index 0 (pure weave) has gcd(m, n) strokes on squares', () => {
+  it('index 1 (pure weave) has gcd(m, n) strokes on squares', () => {
     for (let m = 1; m <= 5; m++)
       for (let n = 1; n <= 5; n++) {
         const g = Grid.of({ kind: 'square', m, n });
-        expect(Pattern.decode(g, 0n).strokeCount()).toBe(gcd(m, n));
+        expect(Pattern.decode(g, 1n).strokeCount()).toBe(gcd(m, n));
       }
   });
 
@@ -43,50 +43,50 @@ describe('stroke-count fixtures', () => {
     ];
     for (const family of families) {
       const g = Grid.of(family);
-      expect(Pattern.decode(g, g.count() - 1n).strokeCount()).toBe(g.dots.length);
+      expect(Pattern.decode(g, g.count()).strokeCount()).toBe(g.dots.length);
     }
   });
 
-  it('index 0 on diamond p has 2p − 3 strokes (p ≥ 2)', () => {
+  it('index 1 on diamond p has 2p − 3 strokes (p ≥ 2)', () => {
     for (let p = 2; p <= 7; p++) {
       const g = Grid.of({ kind: 'diamond', p });
-      expect(Pattern.decode(g, 0n).strokeCount()).toBe(2 * p - 3);
+      expect(Pattern.decode(g, 1n).strokeCount()).toBe(2 * p - 3);
     }
   });
 });
 
 describe('complete enumerations', () => {
-  it('square 2×2: 16 patterns, 4 sikkus, first at 1', () => {
+  it('square 2×2: 16 patterns, 4 sikkus, first at 2', () => {
     const s = enumStats(Grid.of({ kind: 'square', m: 2, n: 2 }));
-    expect([s.total, s.sikku, s.first]).toEqual([16, 4, 1n]);
+    expect([s.total, s.sikku, s.first]).toEqual([16, 4, 2n]);
   });
 
-  it('square 2×3: 128 patterns, 16 sikkus, first at 0', () => {
+  it('square 2×3: 128 patterns, 16 sikkus, first at 1', () => {
     const s = enumStats(Grid.of({ kind: 'square', m: 2, n: 3 }));
-    expect([s.total, s.sikku, s.first]).toEqual([128, 16, 0n]);
+    expect([s.total, s.sikku, s.first]).toEqual([128, 16, 1n]);
   });
 
-  it('square 3×3: 4,096 patterns, 240 sikkus, first at 3, exact histogram', () => {
+  it('square 3×3: 4,096 patterns, 240 sikkus, first at 4, exact histogram', () => {
     const s = enumStats(Grid.of({ kind: 'square', m: 3, n: 3 }));
-    expect([s.total, s.sikku, s.first]).toEqual([4096, 240, 3n]);
+    expect([s.total, s.sikku, s.first]).toEqual([4096, 240, 4n]);
     expect(s.hist).toEqual({
       1: 240, 2: 776, 3: 1128, 4: 1008, 5: 609, 6: 252, 7: 70, 8: 12, 9: 1,
     });
   });
 
-  it('square 3×4: 131,072 patterns, 3,584 sikkus, first at 0', () => {
+  it('square 3×4: 131,072 patterns, 3,584 sikkus, first at 1', () => {
     const s = enumStats(Grid.of({ kind: 'square', m: 3, n: 4 }));
-    expect([s.total, s.sikku, s.first]).toEqual([131072, 3584, 0n]);
+    expect([s.total, s.sikku, s.first]).toEqual([131072, 3584, 1n]);
   });
 
-  it('diamond p=2: 16 patterns, 1 sikku, first at 0', () => {
+  it('diamond p=2: 16 patterns, 1 sikku, first at 1', () => {
     const s = enumStats(Grid.of({ kind: 'diamond', p: 2 }));
-    expect([s.total, s.sikku, s.first]).toEqual([16, 1, 0n]);
+    expect([s.total, s.sikku, s.first]).toEqual([16, 1, 1n]);
   });
 
-  it('diamond p=3: 65,536 patterns, 240 sikkus, first at 6, exact histogram', () => {
+  it('diamond p=3: 65,536 patterns, 240 sikkus, first at 7, exact histogram', () => {
     const s = enumStats(Grid.of({ kind: 'diamond', p: 3 }));
-    expect([s.total, s.sikku, s.first]).toEqual([65536, 240, 6n]);
+    expect([s.total, s.sikku, s.first]).toEqual([65536, 240, 7n]);
     expect(s.hist).toEqual({
       1: 240, 2: 1736, 3: 5672, 4: 11136, 5: 14753, 6: 14024, 7: 9892,
       8: 5248, 9: 2086, 10: 608, 11: 124, 12: 16, 13: 1,

@@ -7,9 +7,9 @@
 
 <p align="center">
   <img src="docs/hero.svg" width="420"
-    alt="An animated muggu drawing itself: pattern 10,922,560,788 on the 1-3-5-7-5-3-1 diamond, a single continuous stroke with 4-fold symmetry in rice-flour white on terracotta." />
+    alt="An animated muggu drawing itself: pattern 10,922,560,789 on the 1-3-5-7-5-3-1 diamond, a single continuous stroke with 4-fold symmetry in rice-flour white on terracotta." />
   <br/>
-  <sub>Pattern 10,922,560,788 of 2³⁶ on the classic diamond: one continuous stroke, 4-fold symmetric, drawn live by <code>@muggula-prastaram/render</code>.</sub>
+  <sub>Pattern 10,922,560,789 of 2³⁶ on the classic diamond: one continuous stroke, 4-fold symmetric, drawn live by <code>@muggula-prastaram/render</code>.</sub>
 </p>
 
 A *muggu* is a decorative pattern traditionally drawn at the threshold of South Indian homes: intricate lines looped around a grid of dots, laid down by hand with rice flour on wet ground before sunrise.
@@ -17,7 +17,7 @@ A *muggu* is a decorative pattern traditionally drawn at the threshold of South 
 A *prastāra* is a device from Sanskrit prosody: the systematic enumeration of every meter of a given length, formalized by Piṅgala in the 3rd century BCE. The enumeration is a bijection, with named procedures: *uddiṣṭa* finds a
 meter's index, *naṣṭa* rebuilds the meter from its index, and *saṅkhyā* counts the meters.
 
-**Muggula Prastāram** (lit. *prastāra of muggus*) applies the same idea to a formal model of muggu construction to enumerate and generate muggus. On a fixed dot grid, a muggu is determined by which *gates* between adjacent dots are open. As such, each construction can be represented as a binary vector: every pattern has an index, every index reconstructs a valid muggu, and `encode()`, `decode()`, and `count()` are uddiṣṭa, naṣṭa, and saṅkhyā.
+**Muggula Prastāram** (lit. *prastāra of muggus*) applies the same idea to a formal model of muggu construction to enumerate and generate muggus. On a fixed dot grid, a muggu is determined by which *gates* between adjacent dots are open. As such, each construction can be represented as a binary vector: every pattern has an index, every index reconstructs a valid muggu, and `encode()`, `decode()`, and `count()` are uddiṣṭa, naṣṭa, and saṅkhyā. As in Piṅgala's prastāra, indices start from one — an index is one plus the sum of the place values — so the pure weave is pattern 1 and indices run from 1 to the saṅkhyā.
 
 ## Packages
 
@@ -48,7 +48,7 @@ grid.count();                                      // 65536n, the saṅkhyā
 
 // stepped, concave, even holed regions all work:
 const srivatsa = Grid.of({ kind: 'custom', dots: dotsFromRows([1, 3, 3, 1]) });
-Pattern.decode(srivatsa, 0n).strokeCount();        // 1: the pure weave IS the śrīvatsa
+Pattern.decode(srivatsa, 1n).strokeCount();        // 1: the pure weave IS the śrīvatsa
 
 const muggu = Pattern.decode(grid, 2847n);         // naṣṭa: index → pattern
 muggu.strokeCount();                               // 5
